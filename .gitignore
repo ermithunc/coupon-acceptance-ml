@@ -1,0 +1,61 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials
+credentials.json
+
+# Local data (do not commit raw CSVs)
+data/raw/*.csv
+data/processed/*
+!data/processed/.gitkeep
+Dataset/
+
+# Models / large artifacts
+models/*
+!models/.gitkeep
+*.pkl
+*.joblib
+*.bin
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+~$*
+
+# Bulk dataset archives (raw CSVs stay local / gitignored)
+Dataset.zip
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Logs
+*.log
+logs/
