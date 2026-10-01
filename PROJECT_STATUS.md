@@ -18,10 +18,15 @@ feat: add coupon acceptance streamlit demo
 
 ## Known Issues
 
-- GitHub CLI 2.102.0 is installed, but `gh auth login` has not been run, so no GitHub remote exists yet.
 - AWS CLI (`aws`) is not installed. Needed from Phase 20 only.
 - Performance claim is recorded in `models/model_card.json`: 5-fold ROC-AUC 0.8381. The saved pipeline is the deployment refit.
 
+## GitHub
+
+- Remote: `origin` → https://github.com/ermithunc/coupon-acceptance-ml
+- Visibility: public
+- Branch: `main`
+
 ## Next Action
 
-Phase 18 — Inference and Application Testing. Before that, run `gh auth login` in a terminal if you want the GitHub remote created.
+Phase 18 — Inference and Application Testing.
