@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-13 — Hyperparameter Tuning
+14 — Final Model Selection
 
 ## Status
 
@@ -10,19 +10,19 @@ PASS WITH WARNING
 
 ## Last Successful Test
 
-2026-10-01 — `pytest tests/test_tuning.py` — 2 passed. Bounded search on the training file, then 5-fold rescore. Tuned XGBoost ROC-AUC 0.8381. Tuned random forest ROC-AUC 0.8201.
+2026-10-01 — selection checked against `reports/experiments/` 5-fold records. Selected model: tuned XGBoost, ROC-AUC 0.8381, PR-AUC 0.8596, Brier 0.1606.
 
 ## Last Git Commit
 
-feat: tune shortlisted models with a bounded search
+docs: select tuned xgboost from validation evidence
 
 ## Known Issues
 
 - GitHub CLI (`gh`) is not installed, so a GitHub remote was not created.
 - AWS CLI (`aws`) is not installed. Needed from Phase 20 only.
-- Tuned models fit the training rows more tightly (accuracy gaps 0.1247 and 0.1423). Reported performance is the 5-fold score.
-- No final model is selected yet.
+- Reported performance is the 5-fold score. The 0.8900 full-refit training accuracy is not the claim.
+- SHAP explanations are not written yet.
 
 ## Next Action
 
-Phase 14 — Final Model Selection.
+Phase 15 — SHAP / Explainability.
