@@ -35,3 +35,22 @@ def random_forest() -> RandomForestClassifier:
         random_state=42,
         n_jobs=-1,
     )
+
+
+def xgboost_model():
+    """Initial boosted trees. Small fixed settings, not a search."""
+    from xgboost import XGBClassifier
+
+    return XGBClassifier(
+        n_estimators=200,
+        max_depth=4,
+        learning_rate=0.1,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        min_child_weight=1,
+        objective="binary:logistic",
+        eval_metric="logloss",
+        tree_method="hist",
+        random_state=42,
+        n_jobs=-1,
+    )
