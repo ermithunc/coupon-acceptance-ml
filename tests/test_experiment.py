@@ -10,6 +10,7 @@ import pytest
 from sklearn.tree import DecisionTreeClassifier
 
 from src.data_loader import load_train
+from tests.csv_requirement import requires_official_csv
 from src.experiment import (
     metric_bundle,
     run_experiment,
@@ -26,6 +27,7 @@ def test_metric_bundle_on_a_known_case():
     assert 0 < scores["pr_auc"] <= 1
 
 
+@requires_official_csv
 def test_validation_split_is_stratified_and_disjoint():
     train = load_train()
     X_train, X_valid, y_train, y_valid = stratified_validation_split(train)
@@ -34,6 +36,7 @@ def test_validation_split_is_stratified_and_disjoint():
     assert y_train.mean() == pytest.approx(y_valid.mean(), abs=0.02)
 
 
+@requires_official_csv
 def test_run_experiment_writes_a_complete_record(tmp_path, monkeypatch):
     def _forbid_test_load(*args, **kwargs):
         raise AssertionError("official test data must not be loaded")

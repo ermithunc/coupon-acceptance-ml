@@ -162,9 +162,12 @@ This layout checkpoint is committed on `docs/repository-layout` and opened as a 
 
 `tests/test_inference.py` loads the saved pipeline and does not refit. `pytest tests/test_inference.py` passed 7 tests. The default form row scores 0.846452 (84.6%, class Accept). Scoring all 2,537 official test rows reproduces `submission.csv` at threshold 0.5. Missing `car`, `Bar`, and `CoffeeHouse` still return a probability in `[0, 1]`. Unknown categories `Not A Real Coupon` and `Mars` do not raise, because one-hot encoding uses `handle_unknown="ignore"`. The Streamlit AppTest metric matches that direct score. Details are in `reports/inference_testing.md`.
 
+## Phase 19
+
+`.github/workflows/ci.yml` runs on push and pull request. It sets up Python 3.13, installs `requirements.txt`, and runs `python -m pytest`. It does not deploy and it does not read secrets. Official CSVs stay gitignored, so tests marked with `requires_official_csv` skip on GitHub and still run on a machine that has `data/raw/`. Local result on 2026-10-01: 59 passed, 0 skipped.
+
 ## Still open
 
-- Phase 19 — GitHub Actions CI on push and pull request (this is the first phase that needs a branch other than a direct commit to `main`, if the pull-request trigger is going to be real)
 - Phase 20–22 — AWS preparation, lightweight deploy, cost notes
 - Phase 23–25 — README, presentation material, final audit
 

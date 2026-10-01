@@ -12,6 +12,7 @@ from src.data_loader import PROJECT_ROOT, TEST_COLUMNS, load_test
 from src.demo_text import build_raw_row, classify
 from src.predict import DECISION_THRESHOLD, SUBMISSION_PATH, load_pipeline
 from src.validation import KNOWN_CATEGORIES
+from tests.csv_requirement import requires_official_csv
 
 
 def _pipeline():
@@ -74,6 +75,7 @@ def test_single_row_inference_returns_a_probability_and_class():
     assert label == int(acceptance >= DECISION_THRESHOLD)
 
 
+@requires_official_csv
 def test_batch_inference_matches_the_saved_submission():
     test_df = load_test()
     proba = _pipeline().predict_proba(test_df)
@@ -85,6 +87,7 @@ def test_batch_inference_matches_the_saved_submission():
     assert labels.tolist() == submission["Y"].astype(int).tolist()
 
 
+@requires_official_csv
 def test_missing_values_still_return_a_probability_in_range():
     row = load_test().iloc[[0]].copy()
     row["car"] = None
@@ -95,6 +98,7 @@ def test_missing_values_still_return_a_probability_in_range():
     assert classify(acceptance) in (0, 1)
 
 
+@requires_official_csv
 def test_unknown_categories_still_return_a_probability_in_range():
     row = load_test().iloc[[0]].copy()
     row["coupon"] = "Not A Real Coupon"
