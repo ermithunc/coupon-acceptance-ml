@@ -164,7 +164,7 @@ This layout checkpoint is committed on `docs/repository-layout` and opened as a 
 
 ## Phase 19
 
-`.github/workflows/ci.yml` runs on push and pull request. It sets up Python 3.13, installs `requirements.txt`, and runs `python -m pytest`. It does not deploy and it does not read secrets. Official CSVs stay gitignored, so tests marked with `requires_official_csv` skip on GitHub and still run on a machine that has `data/raw/`. Local result on 2026-10-01: 59 passed, 0 skipped.
+`.github/workflows/ci.yml` runs on push and pull request. It sets up Python 3.13, installs `requirements.txt`, and runs `python -m pytest`. It does not deploy and it does not read secrets. Official CSVs stay gitignored, so tests marked with `requires_official_csv` skip on GitHub and still run on a machine that has `data/raw/`. Local result on 2026-10-01: 59 passed, 0 skipped. GitHub Actions run 36851866099 passed with 31 tests and skipped 28.
 
 ## Still open
 
