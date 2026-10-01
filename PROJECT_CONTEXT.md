@@ -166,9 +166,14 @@ This layout checkpoint is committed on `docs/repository-layout` and opened as a 
 
 `.github/workflows/ci.yml` runs on push and pull request. It sets up Python 3.13, installs `requirements.txt`, and runs `python -m pytest`. It does not deploy and it does not read secrets. Official CSVs stay gitignored, so tests marked with `requires_official_csv` skip on GitHub and still run on a machine that has `data/raw/`. Local result on 2026-10-01: 59 passed, 0 skipped. GitHub Actions run 36851866099 passed with 31 tests and skipped 28.
 
+## Phase 20
+
+Hosting files are ready and no AWS resources were created. Startup command: `python -m streamlit run app/app.py` from the repository root (`scripts/start_streamlit.ps1` on Windows). The model path is `models/inference_pipeline.joblib`. `.env.example` holds Streamlit port settings only. `aws` is not installed, so `aws sts get-caller-identity` did not run. Details are in `reports/aws_deployment_prep.md`.
+
 ## Still open
 
-- Phase 20–22 — AWS preparation, lightweight deploy, cost notes
+- Phase 21 — AWS deployment, blocked until the AWS CLI is installed and the account identity check succeeds
+- Phase 22 — AWS cost and safety notes, after a deployment exists
 - Phase 23–25 — README, presentation material, final audit
 
-GitHub login is done as `ermithunc`. The remaining deployment blocker is the missing AWS CLI, and that is only needed from Phase 20.
+GitHub login is done as `ermithunc`. The deployment blocker is the missing AWS CLI. Install AWS CLI v2 and authenticate with `aws configure` or SSO on this machine. Do not paste access keys into chat.

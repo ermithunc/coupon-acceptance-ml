@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-19 — GitHub Actions CI
+20 — AWS Deployment Preparation
 
 ## Status
 
@@ -10,15 +10,15 @@ PASS WITH WARNING
 
 ## Last Successful Test
 
-2026-10-01 — `pytest` — 59 passed, 0 skipped. Official CSVs are on this machine, so every data check ran.
+2026-10-01 — `pytest tests/test_deploy_prep.py` — 3 passed. No AWS API call was made.
 
 ## Last Git Commit
 
-ci: run pytest on push and pull request
+docs: prepare lightweight hosting without creating AWS resources
 
 ## Known Issues
 
-- AWS CLI (`aws`) is not installed. Needed from Phase 20 only.
+- AWS CLI (`aws`) is not installed, so `aws sts get-caller-identity` could not run. Phase 21 stays blocked until the CLI is installed and the account is authenticated locally.
 - Performance claim is recorded in `models/model_card.json`: 5-fold ROC-AUC 0.8381. The saved pipeline is the deployment refit.
 - Unknown categories are ignored by the one-hot encoder and still receive a probability. The Streamlit form only offers training-file categories.
 - GitHub Actions cannot see `train.csv` or `test.csv` because those files are gitignored. On run 36851866099 the job passed with 31 tests and skipped 28. Those 28 still run locally.
@@ -28,8 +28,8 @@ ci: run pytest on push and pull request
 - Remote: `origin` → https://github.com/ermithunc/coupon-acceptance-ml
 - Visibility: public
 - Default branch: `main`
-- This phase branch: `phase/19-github-actions`
+- This phase branch: `phase/20-aws-preparation`
 
 ## Next Action
 
-Phase 20 — AWS Deployment Preparation. Do not create paid infrastructure in that phase.
+Phase 21 — AWS Deployment. Blocked until the AWS CLI is installed and `aws sts get-caller-identity` succeeds. Do not create paid resources before that.
