@@ -35,9 +35,11 @@ Dataset/
 # Models / large artifacts
 models/*
 !models/.gitkeep
+!models/inference_pipeline.joblib
 *.pkl
 *.joblib
 *.bin
+!models/inference_pipeline.joblib
 
 # OS / editor
 .DS_Store
