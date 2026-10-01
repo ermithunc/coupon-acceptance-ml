@@ -13,8 +13,8 @@ import pandas as pd
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 RAW_DIR_CANDIDATES = (
-    PROJECT_ROOT / "Dataset" / "Datasets",
     PROJECT_ROOT / "data" / "raw",
+    PROJECT_ROOT / "Dataset" / "Datasets",
 )
 
 IDENTIFIER_COL = "customer_id"
