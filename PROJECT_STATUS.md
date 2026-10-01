@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-14 — Final Model Selection
+15 — SHAP / Explainability
 
 ## Status
 
@@ -10,19 +10,19 @@ PASS WITH WARNING
 
 ## Last Successful Test
 
-2026-10-01 — selection checked against `reports/experiments/` 5-fold records. Selected model: tuned XGBoost, ROC-AUC 0.8381, PR-AUC 0.8596, Brier 0.1606.
+2026-10-01 — `pytest tests/test_explain.py` — 1 passed. SHAP sample of 400 training rows on tuned XGBoost.
 
 ## Last Git Commit
 
-docs: select tuned xgboost from validation evidence
+feat: add SHAP explanations for tuned xgboost
 
 ## Known Issues
 
 - GitHub CLI (`gh`) is not installed, so a GitHub remote was not created.
 - AWS CLI (`aws`) is not installed. Needed from Phase 20 only.
-- Reported performance is the 5-fold score. The 0.8900 full-refit training accuracy is not the claim.
-- SHAP explanations are not written yet.
+- Reported model performance remains the 5-fold score (ROC-AUC 0.8381), not the 0.8900 training refit accuracy.
+- SHAP describes associations with predicted probability. One local example is dominated by a single occupation flag; the global pattern is coupon-venue frequency and a 1-day expiration.
 
 ## Next Action
 
-Phase 15 — SHAP / Explainability.
+Phase 16 — Final Model + Test Prediction. Do not start until explicitly continued.
