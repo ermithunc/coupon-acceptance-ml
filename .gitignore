@@ -36,6 +36,7 @@ Dataset/
 models/*
 !models/.gitkeep
 !models/inference_pipeline.joblib
+!models/model_card.json
 *.pkl
 *.joblib
 *.bin

@@ -1,0 +1,45 @@
+{
+  "selected_model": "Tuned XGBoost",
+  "performance_claim": "5-fold cross-validation on the training file, before the deployment refit",
+  "decision_threshold": 0.5,
+  "cv": {
+    "accuracy": {
+      "mean": 0.7653500110467191,
+      "std": 0.005362872944549324
+    },
+    "precision": {
+      "mean": 0.7715250921380009,
+      "std": 0.007258716953047147
+    },
+    "recall": {
+      "mean": 0.8344296620525764,
+      "std": 0.004774563219251195
+    },
+    "f1": {
+      "mean": 0.8017123665708186,
+      "std": 0.003649225936607369
+    },
+    "roc_auc": {
+      "mean": 0.8380662715127561,
+      "std": 0.006202313831828052
+    },
+    "pr_auc": {
+      "mean": 0.8595665137121739,
+      "std": 0.008988733688985352
+    }
+  },
+  "oof_brier": 0.16055517200662386,
+  "artifact": "models/inference_pipeline.joblib",
+  "artifact_fit": "all 10,147 training rows, after the cross-validation score was locked",
+  "not_a_performance_claim": {
+    "train_accuracy_full_refit": 0.8900167537203114,
+    "reason": "Accuracy on the same rows used to fit the saved pipeline. Do not quote it as model performance."
+  },
+  "global_associations": [
+    "coupon_venue_freq_ord",
+    "expiration_1d",
+    "coupon_Carry out & Take away",
+    "destination_No Urgent Place",
+    "weather_Sunny"
+  ]
+}

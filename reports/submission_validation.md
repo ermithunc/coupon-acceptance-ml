@@ -17,3 +17,5 @@ File: `submission.csv`, columns `customer_id`, `Y`.
 | Predicted 1 | 1,516 |
 
 The raw test file was not modified. Test rows were not used to fit the pipeline.
+
+The performance claim for this model is the 5-fold cross-validation ROC-AUC of 0.8381, stored in `models/model_card.json`. The joblib file is a refit on all 10,147 training rows so it can score new customers. Its accuracy on those same training rows is not the performance claim.
