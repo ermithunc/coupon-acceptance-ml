@@ -5,6 +5,7 @@ from __future__ import annotations
 import pandas as pd
 
 from src.data_loader import load_train
+from tests.csv_requirement import requires_official_csv
 from src.feature_engineering import (
     CouponFeatureEngineer,
     compare_feature_sets,
@@ -85,6 +86,7 @@ def test_target_values_do_not_change_features():
     pd.testing.assert_frame_equal(first, second)
 
 
+@requires_official_csv
 def test_engineered_pipeline_transforms_training_rows():
     train = load_train().iloc[:300]
     X = train.drop(columns=["Y"])
@@ -94,6 +96,7 @@ def test_engineered_pipeline_transforms_training_rows():
     assert transformed.shape[1] > 10
 
 
+@requires_official_csv
 def test_feature_comparison_runs_on_a_training_sample():
     train = load_train().sample(n=1200, random_state=0)
     table = compare_feature_sets(train, n_splits=2)

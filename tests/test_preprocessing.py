@@ -5,11 +5,15 @@ from __future__ import annotations
 import numpy as np
 
 from src.data_loader import IDENTIFIER_COL, TARGET_COL, load_train, split_xy
+from tests.csv_requirement import requires_official_csv
 from src.preprocessing import (
     DROPPED_COLUMNS,
     make_preprocessing_pipeline,
     modeling_feature_names,
 )
+
+
+pytestmark = requires_official_csv
 
 
 def _xy():

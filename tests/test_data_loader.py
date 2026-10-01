@@ -5,6 +5,7 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
+from tests.csv_requirement import requires_official_csv
 from src.data_loader import (
     EXPECTED_TEST_ROWS,
     EXPECTED_TRAIN_ROWS,
@@ -21,6 +22,7 @@ from src.data_loader import (
 )
 
 
+@requires_official_csv
 def test_train_contract_matches_official_files():
     train = load_train()
     assert list(train.columns) == TRAIN_COLUMNS
@@ -29,6 +31,7 @@ def test_train_contract_matches_official_files():
     assert set(train[TARGET_COL].dropna().unique()) <= {0, 1}
 
 
+@requires_official_csv
 def test_test_file_has_no_target_and_expected_shape():
     test = load_test()
     assert list(test.columns) == TEST_COLUMNS
@@ -37,6 +40,7 @@ def test_test_file_has_no_target_and_expected_shape():
     assert test[IDENTIFIER_COL].is_unique
 
 
+@requires_official_csv
 def test_train_and_test_identifiers_do_not_overlap():
     train = load_train()
     test = load_test()
@@ -44,6 +48,7 @@ def test_train_and_test_identifiers_do_not_overlap():
     assert overlap == set()
 
 
+@requires_official_csv
 def test_sample_submission_aligns_with_test_ids():
     test = load_test()
     submission = load_sample_submission()
@@ -56,6 +61,7 @@ def test_sample_submission_aligns_with_test_ids():
     )
 
 
+@requires_official_csv
 def test_split_xy_does_not_include_target_in_features():
     train = load_train()
     X, y = split_xy(train)
@@ -71,6 +77,7 @@ def test_feature_columns_exclude_identifier_by_default():
     assert "passanger" in cols
 
 
+@requires_official_csv
 def test_passanger_spelling_is_preserved():
     train = load_train()
     test = load_test()

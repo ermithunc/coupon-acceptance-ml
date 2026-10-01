@@ -6,6 +6,7 @@ import pandas as pd
 import pytest
 
 from src.data_loader import EXPECTED_TEST_ROWS, load_sample_submission, load_test
+from tests.csv_requirement import requires_official_csv
 from src.predict import SUBMISSION_PATH, validate_submission
 
 
@@ -25,6 +26,7 @@ def test_validate_submission_rejects_reordered_ids():
         validate_submission(submission, test_df, sample_df)
 
 
+@requires_official_csv
 def test_saved_submission_matches_the_official_test_ids():
     submission = pd.read_csv(SUBMISSION_PATH)
     summary = validate_submission(submission, load_test(), load_sample_submission())
