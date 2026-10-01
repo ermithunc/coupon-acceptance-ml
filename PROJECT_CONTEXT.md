@@ -158,9 +158,12 @@ This layout checkpoint is committed on `docs/repository-layout` and opened as a 
 - AWS CLI is not installed. Do not create paid infrastructure unless the deployment phase is reached and the user approves it.
 - Do not rewrite `main` to invent historical branches. New phase work that should be reviewed as a pull request starts from a new branch.
 
+## Phase 18
+
+`tests/test_inference.py` loads the saved pipeline and does not refit. `pytest tests/test_inference.py` passed 7 tests. The default form row scores 0.846452 (84.6%, class Accept). Scoring all 2,537 official test rows reproduces `submission.csv` at threshold 0.5. Missing `car`, `Bar`, and `CoffeeHouse` still return a probability in `[0, 1]`. Unknown categories `Not A Real Coupon` and `Mars` do not raise, because one-hot encoding uses `handle_unknown="ignore"`. The Streamlit AppTest metric matches that direct score. Details are in `reports/inference_testing.md`.
+
 ## Still open
 
-- Phase 18 — Inference and application testing
 - Phase 19 — GitHub Actions CI on push and pull request (this is the first phase that needs a branch other than a direct commit to `main`, if the pull-request trigger is going to be real)
 - Phase 20–22 — AWS preparation, lightweight deploy, cost notes
 - Phase 23–25 — README, presentation material, final audit
