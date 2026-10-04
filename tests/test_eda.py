@@ -7,6 +7,7 @@ from pathlib import Path
 import pandas as pd
 
 from src.data_loader import TARGET_COL, load_train
+from tests.csv_requirement import requires_official_csv
 from src.eda import (
     acceptance_table,
     car_observed_table,
@@ -31,18 +32,21 @@ def test_missing_levels_are_kept():
     assert levels == {"(missing)", "never"}
 
 
+@requires_official_csv
 def test_training_overall_rate_matches_official_counts():
     train = load_train()
     assert len(train) == 10147
     assert abs(overall_acceptance_rate(train) - (5768 / 10147)) < 1e-12
 
 
+@requires_official_csv
 def test_car_observed_split_counts():
     table = car_observed_table(load_train()).set_index("level")
     assert int(table.loc["missing", "n"]) == 10063
     assert int(table.loc["observed", "n"]) == 84
 
 
+@requires_official_csv
 def test_generate_figures_writes_nonempty_pngs(tmp_path: Path):
     paths = generate_figures(load_train(), tmp_path)
     assert len(paths) == 10

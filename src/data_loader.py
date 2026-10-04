@@ -13,8 +13,8 @@ import pandas as pd
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 RAW_DIR_CANDIDATES = (
-    PROJECT_ROOT / "Dataset" / "Datasets",
     PROJECT_ROOT / "data" / "raw",
+    PROJECT_ROOT / "Dataset" / "Datasets",
 )
 
 IDENTIFIER_COL = "customer_id"
@@ -69,10 +69,19 @@ class DataContractError(ValueError):
     """Raised when a raw file does not match the documented data contract."""
 
 
+def _candidate_has_official_files(candidate: Path) -> bool:
+    return (candidate / TRAIN_FILE).is_file() and (candidate / TEST_FILE).is_file()
+
+
+def official_files_present() -> bool:
+    """True when the local checkout can see train.csv and test.csv."""
+    return any(_candidate_has_official_files(candidate) for candidate in RAW_DIR_CANDIDATES)
+
+
 def find_raw_dir() -> Path:
     """Return the first existing directory that contains the official CSVs."""
     for candidate in RAW_DIR_CANDIDATES:
-        if (candidate / TRAIN_FILE).is_file() and (candidate / TEST_FILE).is_file():
+        if _candidate_has_official_files(candidate):
             return candidate
     searched = ", ".join(str(p) for p in RAW_DIR_CANDIDATES)
     raise FileNotFoundError(

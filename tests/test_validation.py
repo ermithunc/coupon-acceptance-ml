@@ -5,6 +5,7 @@ from __future__ import annotations
 import pandas as pd
 
 from src.data_loader import IDENTIFIER_COL, TARGET_COL, load_test, load_train
+from tests.csv_requirement import requires_official_csv
 from src.validation import (
     assess_quality,
     case_collisions,
@@ -16,6 +17,7 @@ from src.validation import (
 )
 
 
+@requires_official_csv
 def test_official_files_have_no_row_or_id_duplicates():
     train = load_train()
     test = load_test()
@@ -26,6 +28,7 @@ def test_official_files_have_no_row_or_id_duplicates():
     assert report.duplicate_ids_test == 0
 
 
+@requires_official_csv
 def test_official_target_is_binary_with_no_nulls():
     train = load_train()
     report = assess_quality(train, load_test())
@@ -34,6 +37,7 @@ def test_official_target_is_binary_with_no_nulls():
     assert int(train[TARGET_COL].isna().sum()) == 0
 
 
+@requires_official_csv
 def test_official_constant_and_near_constant_columns():
     train = load_train()
     assert "toCoupon_GEQ5min" in constant_columns(train)
@@ -42,6 +46,7 @@ def test_official_constant_and_near_constant_columns():
     assert near["car"] > 0.99
 
 
+@requires_official_csv
 def test_official_no_category_mismatch_or_whitespace():
     report = assess_quality(load_train(), load_test())
     assert report.unexpected_categories == {}
@@ -51,6 +56,7 @@ def test_official_no_category_mismatch_or_whitespace():
     assert report.direction_are_complements is True
 
 
+@requires_official_csv
 def test_official_feature_duplicate_pairs_are_documented():
     train = load_train()
     test = load_test()
@@ -62,6 +68,7 @@ def test_official_feature_duplicate_pairs_are_documented():
     assert n_test_mixed == 0
 
 
+@requires_official_csv
 def test_official_missing_counts():
     report = assess_quality(load_train(), load_test())
     assert report.missing_train["car"] == 10063
