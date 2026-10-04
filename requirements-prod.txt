@@ -1,0 +1,11 @@
+# Direct packages imported by the Streamlit inference app and the saved pipeline.
+# Pins match the environment that wrote models/inference_pipeline.joblib.
+# The booster header in that file is XGBoost 3.4.1 with tree_method=hist.
+# scripts/install_inference.sh installs the xgboost pin with --no-deps.
+pandas==3.0.6
+numpy==2.5.3
+scipy==1.18.1
+scikit-learn==1.9.1
+joblib==1.6.0
+streamlit==1.64.0
+xgboost==3.4.1

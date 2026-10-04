@@ -6,13 +6,24 @@ No AWS resources were created. `aws sts get-caller-identity` was not run because
 
 | Item | State |
 | --- | --- |
-| requirements.txt | Present. Includes `streamlit` and `xgboost`. |
+| requirements.txt | Present. Development and training install, including `streamlit` and `xgboost`. |
+| requirements-prod.txt | Inference pins only. Installed by `scripts/install_inference.sh`. |
 | Startup command | From the repository root: `python -m streamlit run app/app.py`. Windows helper: `scripts/start_streamlit.ps1`. |
 | Model artifact | `models/inference_pipeline.joblib`, loaded from the project root recorded in code. `models/model_card.json` is the claim record. |
 | Environment variables | `.env.example` sets Streamlit port, address, and headless mode. No secret values. |
 | Relative paths | The app and `load_pipeline` resolve the repository from `__file__`, so the process does not depend on the shell's current directory. |
 | Secret handling | `.gitignore` ignores `.env`, `*.pem`, `*.key`, and `credentials.json`. The CI workflow does not read GitHub secrets. |
 | Paid infrastructure | None. No SageMaker, ECS, Kubernetes, or EC2 was requested or created. |
+
+## Production install
+
+On the Amazon Linux host, from the repository root:
+
+```bash
+bash scripts/install_inference.sh
+```
+
+That script installs `requirements-prod.txt`. It does not install the development requirements file. The XGBoost pin is `xgboost==3.4.1`, installed with `--no-deps`, so pip does not download `nvidia-nccl-cu13`. NumPy and SciPy are installed from the other pins before that step. The saved booster version is 3.4.1.
 
 ## Startup
 
