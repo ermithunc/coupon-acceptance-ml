@@ -46,4 +46,6 @@ pip install -r requirements.txt
 
 ## Status
 
-See `PROJECT_STATUS.md` for the current phase. Modeling, Streamlit, CI, and AWS work have not started yet.
+See `PROJECT_STATUS.md` for the current phase. Modeling, Streamlit, CI, and AWS work have been completed.
+http://52.66.213.185:8501/ 
+Deployed in AWS.
